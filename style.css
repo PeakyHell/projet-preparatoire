@@ -1,0 +1,41 @@
+main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.index-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    gap: 1rem;
+}
+
+.date-selector {
+    display: flex;
+    flex-direction: row;
+}
+
+.incidents-page {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(4, 25%);
+    grid-template-rows: repeat(20, 100px);
+}
+
+.list-header {
+    grid-column: 1 / 5;
+    grid-row: 1 / 2;
+    gap: 1rem;
+}
+
+.incidents-list {
+    grid-column: 1 / 5;
+    grid-row: 2 / 21;
+}
+
+.incident {
+    display: flex;
+    justify-content: space-around;
+}
