@@ -49,3 +49,36 @@ main.index {
     padding: 2rem;
     border: 1px solid black;
 }
+
+
+
+/* ------------REPORT PAGE-------------------*/
+
+main.report {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+.report input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    height: 200px;
+}
+
+/* Bouton "Soumettre" */
+.report a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    border: 2px solid #000000;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+}
