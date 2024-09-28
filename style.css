@@ -35,33 +35,50 @@ nav h1 {
 main.index {
     display: flex;
     flex-direction: column;
-    width: 90%;
+    align-items: center;
+    gap: 2rem;
+    padding-top: 2rem;
 }
 
 .index-top {
     display: flex;
     justify-content: space-around;
+    width: 100%;
 }
 
+/* Lien pour créer un incident */
+.index-top a {
+    border: 1px solid black;
+    border-radius: .5rem;
+    padding: .5rem;
+}
+
+/* Formulaire de recherche d'incident */
 .incident-search {
     display: flex;
     flex-direction: row;
     align-items: center;
+    gap: 1rem;
 }
 
-/* Create a grid on which the header and the incidents will align */
+.incident-search input[type="text"] {
+    width: 45%;
+    padding: .2rem;
+}
+
+/* Crée une grille sur laquelle le header et les incidents s'aligneront */
 .incidents-page {
     display: grid;
     grid-template: repeat(15, 1fr) / repeat(4, 1fr);
+    width: 75%;
 }
 
-/* Align the header on the first line of the grid */
+/* Aligne le header sur la première ligne de la grille */
 .list-header {
     grid-area: 1 / 1 / 2 / 5;
-    display: grid;
 }
 
-/* Create a list of 14 rows, each one containing an incident */
+/* Liste de 14 lignes, chacune contenant un incident */
 .incidents-list {
     grid-area: 2 / 1 / 16 / 5;
     display: grid;
@@ -69,14 +86,17 @@ main.index {
     gap: .5rem;
 }
 
-/*  */
+/* Ligne de la liste */
 .incident {
-    display: grid;
     border: 1px solid black;
     border-radius: .5rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
 }
 
+/*  */
 .list-header, .incident {
+    display: grid;
     grid-template-columns: repeat(4, 1fr);
     text-align: left;
     padding-left: 2rem;
