@@ -82,3 +82,68 @@ main.report {
     font-size: 16px;
     cursor: pointer;
 }
+
+/* ------------AUTH PAGE-------------------*/
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    padding: 20px;
+    position: relative;
+}
+
+.container {
+    width: 300px;
+    padding: 10px;
+    position: absolute;  /* Position absolutely */
+    left: 10px;         /* Move it 100px from the left side */
+    top: 50px;           /* Adjust from the top as well */
+}
+
+h2 {
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+label {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+input {
+    padding: 5px;
+    margin-bottom: 20px;
+    border: 1px solid black;
+    width: 100%;
+}
+
+/* bouton s'enregistrer et s'identifier */
+button {
+    padding: 5px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #ffffff;
+}
+
+
+
+
+
+
+
