@@ -135,3 +135,50 @@ main.report {
     font-size: 16px;
     cursor: pointer;
 }
+
+/* ------------AUTH PAGE-------------------*/
+
+  
+.container {
+    width: 300px;
+    padding: 10px;
+    position: absolute;  /* Position absolutely */
+    left: 10px;         /* Move it 100px from the left side */
+    top: 50px;           /* Adjust from the top as well */
+}
+  
+.container h2 {
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+.container form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+.container label {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+.container input {
+    padding: 5px;
+    margin-bottom: 20px;
+    border: 1px solid black;
+    width: 100%;
+}
+
+/* bouton s'enregistrer et s'identifier */
+.container button {
+    padding: 5px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
+    cursor: pointer;
+    width: 100%;
+}
+
+.container button:hover {
+    background-color: #ffffff;
+}
