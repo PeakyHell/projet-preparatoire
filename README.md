@@ -6,9 +6,9 @@ Cours : LINFO1212
 Groupe : 3
 
 Membres :
-    Delannoy Arthur
-    Lambert Valentin
-    Van Impe Louis
+- Delannoy Arthur
+- Lambert Valentin
+- Van Impe Louis
 
 # Structure du projet
 Le projet contient 3 dossier :
