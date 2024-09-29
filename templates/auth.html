@@ -1,12 +1,21 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compte existant et Nouveau compte</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
+    <nav>
+        <section class="nav-left">
+            <h1>Fix my street</h1>
+            <a href="/templates/index.html">Accueil</a>
+        </section>
+        <section class="nav-right">
+            <a href="/templates/auth.html">S'identifier</a>
+        </section>
+    </nav>
     <div class="container">
         <!-- Formulaire de connexion -->
         <div class="login-form">
@@ -14,36 +23,36 @@
             <form action="#">
                 <label for="username">Nom de l'utilisateur</label>
                 <input type="text" id="username" name="username">
-                
+
                 <label for="password">Mot de passe</label>
                 <input type="password" id="password" name="password">
-                
+
                 <button type="submit">s'identifier</button>
             </form>
         </div>
-        
+
         <!-- Formulaire de création de compte -->
         <div class="register-form">
             <h2>Nouveau compte</h2>
             <form action="#">
                 <label for="new-username">Nom de l'utilisateur</label>
                 <input type="text" id="new-username" name="new-username">
-                
+
                 <label for="new-password">Mot de passe</label>
                 <input type="password" id="new-password" name="new-password">
-                
+
                 <label for="full-name">Nom complet</label>
                 <input type="text" id="full-name" name="full-name">
-                
+
                 <label for="email">Adresse e-mail</label>
                 <input type="email" id="email" name="email">
-                
+
                 <button type="submit">s'enregistrer</button>
             </form>
         </div>
         <div class="link-report"></div>
-            <a href="report.html">Signaler un incident</a>
-            <a href="index.html">Index</a>
+            <a href="/templates/report.html">Signaler un incident</a>
+            <a href="/templates/report.html">Index</a>
     </div>
 </body>
 </html>

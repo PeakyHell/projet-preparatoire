@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
     <nav>
-        <h1>Titre</h1>
-        <form action="">
-            <input type="text">
-        </form>
-        <p>Username</p>
+        <section class="nav-left">
+            <h1>Fix my street</h1>
+            <a href="/templates/index.html">Accueil</a>
+        </section>
+        <section class="nav-right">
+            <a href="/templates/auth.html">S'identifier</a>
+        </section>
     </nav>
     <main class="report">
         <section class="report_page">
@@ -20,15 +22,15 @@
             
             <p>Description</p>
             <form action="">
-                <input type="text">
+                <textarea type="text"></textarea>
             </form>
 
-            <p>Address</p>
+            <p>Addresse</p>
             <form action="">
-                <input type="text">
+                <textarea type="text"></textarea>
             </form>
 
-            <a href="/index.html">Soumettre</a>
+            <a href="/templates/index.html">Soumettre</a>
         </section>
     </main>
 </body>

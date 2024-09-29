@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/static/css/style.css">
     <title>Document</title>
 </head>
 <body>
     <nav>
-        <h1>Titre</h1>
-        <form action="">
-            <input type="text">
-        </form>
-        <p>Username</p>
+        <section class="nav-left">
+            <h1>Fix my street</h1>
+            <a href="/templates/index.html">Accueil</a>
+        </section>
+        <section class="nav-right">
+            <a href="/templates/auth.html">S'identifier</a>
+        </section>
     </nav>
     <main class="index">
         <section class="index-top">
-            <a href="/report.html">Ajouter un incident</a>
+            <a href="/templates/report.html">Ajouter un incident</a>
             <form class="incident-search">
                 <p>Rechercher un incident :</p>
                 <input type="text">

@@ -1,0 +1,13 @@
+Fonctionnalité : Page d'accueil
+
+Les utilisateur peuvent voir la liste des incidents reportés par les autres utilisateurs
+simplement en accédant à la page principale du site
+
+Scénario: Un utilisateur accède au site
+
+Étant donné que des utilisateurs aient reportés des incidents
+Et que l'utilisateur est connecté
+
+Lorsqu'un utilisateur va sur la page principale du site
+
+Alors une liste contenant tous les incidents reportés est affichée
