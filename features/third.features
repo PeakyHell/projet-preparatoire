@@ -3,14 +3,20 @@ Fonctionnalité : authentification
 Les utilisateurs peuvent se connecter ou créer un compte,
 grace au bouton d'identification ou d'enregistrement 
 
-Scénario: Un utilisateur décide de se connecter ou de se créer un compte
-Étant donné que l'utilisateur ai déja un compte crée 
-Et que ses identifiants correspondent il peut se connecter, si ca ne correspond pas il doit se créer un compte
+Scénario 1: Un utilisateur décide de se connecter
+Étant donné que l'utilisateur a déja créé un compte
+
+Lorsqu'il aura entré son identifiant et son mot de passe
+Et que ceux-ci correspondent
+
+Alors il pourra se connecter
+Et accéder aux différentes fonctionalités
+
+
+Scénario 2: Un utilisateur décide de se créer un compte
+Etant donné que l'utilisateur n'a pas de compte
  
-
-
-Lorsque l'utilisateur aura déja créer un compte 
-Et que ses identifiants correspondent
+Lorsque l'utilisateur aura entré toutes les informations pour se créer un compte
 
 Alors il pourra se connecter 
 Et accéder aux différentes fonctionalités
