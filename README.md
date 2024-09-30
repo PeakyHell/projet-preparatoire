@@ -3,7 +3,7 @@ Date : 30 septembre 2024
 
 Cours : LINFO1212
 
-Groupe : 3
+Groupe : A03
 
 Membres :
 - Delannoy Arthur
