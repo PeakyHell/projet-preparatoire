@@ -142,9 +142,6 @@ main.report {
 .container {
     width: 300px;
     padding: 10px;
-    position: absolute;  /* Position absolutely */
-    left: 10px;         /* Move it 100px from the left side */
-    top: 50px;           /* Adjust from the top as well */
 }
   
 .container h2 {
