@@ -1,15 +1,15 @@
-Fonctionnalité : [titre]
+Fonctionnalité : Ajouter un nouvel incident
 
-[Avantage]
-[Moyen]
+Les utilisateurs disposant d'un compte peuvent ajouter des incidents
+en donnant l'adresse et la description de l'incident sur la page dédiée.
 
-Scénario: [titre]
-Étant donné :
-Et :
-...
-Lorsque :
-Et :
-...
-Alors :
-Et :
-...
+Scénario: Un utilisateur ajoute un nouvel incident
+Étant donné que l'utilisateur est connecté sur son compte
+Et qu'il se trouve sur la page pour ajouter un incident
+
+Lorsque l'utilisateur aura ajouté une description décrivant l'incident
+Et qu'il aura également entré l'adresse de l'incident
+Et qu'il aura cliqué sur le bouton "Soumettre"
+
+Alors l'incident nouvellement créé sera ajouté avec les autres incidents sur la page principale
+Et l'utilisateur sera redirigé vers la page principale
