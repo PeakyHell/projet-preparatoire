@@ -1,15 +1,22 @@
-Fonctionnalité : [titre]
+Fonctionnalité : authentification
 
-[Avantage]
-[Moyen]
+Les utilisateurs peuvent se connecter ou créer un compte,
+grace au bouton d'identification ou d'enregistrement 
 
-Scénario: [titre]
-Étant donné :
-Et :
-...
-Lorsque :
-Et :
-...
-Alors :
-Et :
-...
+Scénario 1: Un utilisateur décide de se connecter
+Étant donné que l'utilisateur a déja créé un compte
+
+Lorsqu'il aura entré son identifiant et son mot de passe
+Et que ceux-ci correspondent
+
+Alors il pourra se connecter
+Et accéder aux différentes fonctionalités
+
+
+Scénario 2: Un utilisateur décide de se créer un compte
+Etant donné que l'utilisateur n'a pas de compte
+ 
+Lorsque l'utilisateur aura entré toutes les informations pour se créer un compte
+
+Alors il pourra se connecter 
+Et accéder aux différentes fonctionalités
