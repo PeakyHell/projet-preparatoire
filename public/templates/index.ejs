@@ -1,52 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
-    <title>Document</title>
-</head>
-<body>
-    <nav>
-        <section class="nav-left">
-            <h1>Fix my street</h1>
-            <a href="<%=  %>">Accueil</a>
-        </section>
-        <section class="nav-right">
-            <a href="/auth">S'identifier</a>
-        </section>
-    </nav>
-    <main class="index">
-        <section class="index-top">
-            <a href="/report">Ajouter un incident</a>
-            <form class="incident-search">
-                <p>Rechercher un incident :</p>
-                <input type="text">
-            </form>
-        </section>
-        <section class="incidents-page">
-            <div class="list-header">
-                <p>Description</p>
-                <p>Adresse</p>
-                <p>Rapporté par</p>
-                <p>Date</p>
+<main class="index">
+    <section class="index-top">
+        <a href="/report">Ajouter un incident</a>
+        <form class="incident-search">
+            <p>Rechercher un incident :</p>
+            <input type="text">
+        </form>
+    </section>
+    <section class="incidents-page">
+        <div class="list-header">
+            <p>Description</p>
+            <p>Adresse</p>
+            <p>Rapporté par</p>
+            <p>Date</p>
+        </div>
+        <div class="incidents-list">
+            <div class="incident">
+                <p>Bla bla bla</p>
+                <p>Rue ... </p>
+                <p>User123</p>
+                <p>24/09/2024</p>
             </div>
-            <div class="incidents-list">
-                <div class="incident">
-                    <p>Bla bla bla</p>
-                    <p>Rue ... </p>
-                    <p>User123</p>
-                    <p>24/09/2024</p>
-                </div>
-                <div class="incident">
-                    <p>Bla Blou</p>
-                    <p>Avenue ... </p>
-                    <p>Username567</p>
-                    <p>12/08/2024</p>
-                </div>
+            <div class="incident">
+                <p>Bla Blou</p>
+                <p>Avenue ... </p>
+                <p>Username567</p>
+                <p>12/08/2024</p>
             </div>
-            
-        </section>
-    </main>
-</body>
-</html>
+        </div>
+        
+    </section>
+</main>
