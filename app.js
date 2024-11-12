@@ -36,8 +36,9 @@ app.get('/auth', (req, res) => {
     }
 })
 
-app.post('/auth', (req, res) => {
-    if (req.body.username == 'admin' && req.body.password == 'password') {
+app.post('/login', (req, res) => {
+    const { username, password } = req.body
+    if (username == 'admin' && password == 'password') {
         req.session.username = 'admin'
         res.redirect('/')
     }
@@ -45,6 +46,11 @@ app.post('/auth', (req, res) => {
         res.redirect('/auth')
     }
 })
+
+app.post('/register', (req, res) => {
+    const { username, password, fullname, email } = req.body
+})
+
 
 app.get('/report', (req, res) => {
     if (req.session.username) {
