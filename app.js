@@ -4,6 +4,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const https = require('https')
 const fs = require('fs')
+const { MongoClient } = require('mongodb')
 
 
 app.set('view engine', 'ejs')
@@ -16,18 +17,22 @@ app.use(session({
     secret: 'propre123'
 }));
 
+
+// Connexion à la base de données
+// TODO Modifier l'adresse de la base de données
+const uri = ''
+const client = new MongoClient(uri)
+const incidentsCollection = client.db('Projet').collection('Incidents')
+const usersCollection = client.db('Projet').collection('Users')
+
+
 // Page d'accueil
 app.get('/', (req, res) => {
     res.render('base', {
         title: 'Home',
         content: 'index',
         username: req.session.username || null,
-        incidents: [
-            {description: "Bla", address: "Rue du poulet 15", user: "Moi", date: `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`},
-            {description: "Bla", address: "Rue du poulet 15", user: "Moi", date: `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`},
-            {description: "Bla", address: "Rue du poulet 15", user: "Moi", date: `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`},
-            {description: "Bla", address: "Rue du poulet 15", user: "Moi", date: `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`}
-        ]
+        incidents: []
     })
 })
 
@@ -67,7 +72,7 @@ app.post('/register', (req, res) => {
             fullname: fullname,
             email: email
         }
-
+        usersCollection.insertOne(user)
         req.session.username = username
         res.redirect('/')
     }
@@ -106,7 +111,7 @@ app.post('/report', (req, res) => {
             user: req.session.username,
             date: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
         }
-        
+        incidentsCollection.insertOne(incident)
         res.redirect('/')
     }
     else {
