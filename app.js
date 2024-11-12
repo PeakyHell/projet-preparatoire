@@ -39,7 +39,7 @@ app.get('/auth', (req, res) => {
 app.post('/login', (req, res) => {
     const { username, password } = req.body
     if (username == 'admin' && password == 'password') {
-        req.session.username = 'admin'
+        req.session.username = username
         res.redirect('/')
     }
     else {
@@ -49,6 +49,13 @@ app.post('/login', (req, res) => {
 
 app.post('/register', (req, res) => {
     const { username, password, fullname, email } = req.body
+    if (username && password && fullname && email) {
+        req.session.username = username
+        res.redirect('/')
+    }
+    else {
+        res.redirect('auth')
+    }
 })
 
 
