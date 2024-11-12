@@ -2,7 +2,7 @@
     <!-- Formulaire de connexion -->
     <div class="login-form">
         <h2>Compte existante</h2>
-        <form action="#">
+        <form action="/auth", method="post">
             <label for="username">Nom de l'utilisateur</label>
             <input type="text" id="username" name="username">
 
@@ -16,7 +16,7 @@
     <!-- Formulaire de création de compte -->
     <div class="register-form">
         <h2>Nouveau compte</h2>
-        <form action="#">
+        <form action="/auth", method="post">
             <label for="new-username">Nom de l'utilisateur</label>
             <input type="text" id="new-username" name="new-username">
 
