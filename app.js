@@ -83,4 +83,22 @@ app.get('/report', (req, res) => {
     }    
 })
 
+app.post('/report', (req, res) => {
+    const { description, address } = req.body
+    if (description && address) {
+        let incident = {
+            description: description,
+            address: address,
+            user: req.session.username,
+            date: new Date()
+        }
+        
+        res.redirect('/')
+    }
+    else {
+        res.redirect('/report')
+    }
+})
+
+
 app.listen(3000)

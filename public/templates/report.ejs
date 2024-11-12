@@ -2,16 +2,12 @@
     <section class="report_page">
         <h2>Signaler un nouvel incident</h2>
         
-        <p>Description</p>
-        <form action="">
-            <textarea type="text"></textarea>
+        <form action="/report" method="post">
+            <label for="description">Description</label>
+            <textarea type="text" name="description" id="description"></textarea>
+            <label for="address">Adresse</label>
+            <textarea name="address" id="address"></textarea>
+            <button type="submit">Reporter</button>
         </form>
-
-        <p>Addresse</p>
-        <form action="">
-            <textarea type="text"></textarea>
-        </form>
-
-        <a href="/">Soumettre</a>
     </section>
 </main>
