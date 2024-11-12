@@ -20,7 +20,8 @@ app.use(session({
 app.get('/', (req, res) => {
     res.render('base', {
         title: 'Home',
-        content: 'index'
+        content: 'index',
+        username: req.session.username || null
     })
 })
 
@@ -31,7 +32,8 @@ app.get('/auth', (req, res) => {
     else {
         res.render('base', {
             title: 'Auth',
-            content: 'auth'
+            content: 'auth',
+            username: req.session.username || null
         })
     }
 })
@@ -58,12 +60,17 @@ app.post('/register', (req, res) => {
     }
 })
 
+app.get('/logout', (req, res) => {
+    req.session.destroy()
+    res.redirect('/')
+})
 
 app.get('/report', (req, res) => {
     if (req.session.username) {
         res.render('base', {
             title: 'Report',
-            content: 'report'
+            content: 'report',
+            username: req.session.username || null
         })
     }
     else {

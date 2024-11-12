@@ -13,7 +13,12 @@
             <a href="/">Accueil</a>
         </section>
         <section class="nav-right">
-            <a href="/auth">S'identifier</a>
+            <% if (username) { %>
+                <%= username %>
+                <a href="/logout">Se déconnecter</a>
+            <% } else { %>
+                <a href="/auth">S'identifier</a>
+            <% } %>
         </section>
     </nav>
     <%- include(content) %>
