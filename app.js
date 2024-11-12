@@ -51,28 +51,32 @@ app.get('/auth', (req, res) => {
 })
 
 // Formulaire de connexion
-app.post('/login', (req, res) => {
+app.post('/login', async (req, res) => {
     const { username, password } = req.body
-    if (username == 'admin' && password == 'password') {
-        req.session.username = username
-        res.redirect('/')
-    }
-    else {
-        res.redirect('/auth')
+    if (username && password) {
+        let user = await usersCollection.findOne({ username: username, password: password}) || null
+        if (user) {
+            req.session.username = username
+            res.redirect('/')
+        }
+        else {
+            res.redirect('/auth')
+        }
     }
 })
 
 // Formulaire d'inscritpion
-app.post('/register', (req, res) => {
+app.post('/register', async (req, res) => {
     const { username, password, fullname, email } = req.body
     if (username && password && fullname && email) {
         let user = {
             username: username,
+            // TODO Hasher le mot de passe
             password: password,
             fullname: fullname,
             email: email
         }
-        usersCollection.insertOne(user)
+        await usersCollection.insertOne(user)
         req.session.username = username
         res.redirect('/')
     }
@@ -101,7 +105,7 @@ app.get('/report', (req, res) => {
     }    
 })
 
-app.post('/report', (req, res) => {
+app.post('/report', async (req, res) => {
     const { description, address } = req.body
     if (description && address) {
         let date = new Date()
@@ -111,7 +115,7 @@ app.post('/report', (req, res) => {
             user: req.session.username,
             date: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
         }
-        incidentsCollection.insertOne(incident)
+        await incidentsCollection.insertOne(incident)
         res.redirect('/')
     }
     else {
