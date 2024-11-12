@@ -16,7 +16,7 @@ app.use(session({
     secret: 'propre123'
 }));
 
-
+// Page d'accueil
 app.get('/', (req, res) => {
     res.render('base', {
         title: 'Home',
@@ -25,6 +25,7 @@ app.get('/', (req, res) => {
     })
 })
 
+// Page de connexion / inscription
 app.get('/auth', (req, res) => {
     if (req.session.username) {
         res.redirect('/')
@@ -38,6 +39,7 @@ app.get('/auth', (req, res) => {
     }
 })
 
+// Formulaire de connexion
 app.post('/login', (req, res) => {
     const { username, password } = req.body
     if (username == 'admin' && password == 'password') {
@@ -49,6 +51,7 @@ app.post('/login', (req, res) => {
     }
 })
 
+// Formulaire d'inscritpion
 app.post('/register', (req, res) => {
     const { username, password, fullname, email } = req.body
     if (username && password && fullname && email) {
@@ -60,11 +63,13 @@ app.post('/register', (req, res) => {
     }
 })
 
+// Lien de déconnexion
 app.get('/logout', (req, res) => {
     req.session.destroy()
     res.redirect('/')
 })
 
+// Page de création d'incidents
 app.get('/report', (req, res) => {
     if (req.session.username) {
         res.render('base', {
