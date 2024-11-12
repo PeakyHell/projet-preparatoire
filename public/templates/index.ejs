@@ -14,18 +14,14 @@
             <p>Date</p>
         </div>
         <div class="incidents-list">
+            <% incidents.forEach((incident) => { %>
             <div class="incident">
-                <p>Bla bla bla</p>
-                <p>Rue ... </p>
-                <p>User123</p>
-                <p>24/09/2024</p>
+                <p><%= incident.description %></p>
+                <p><%= incident.address %></p>
+                <p><%= incident.user %></p>
+                <p><%= incident.date %></p>
             </div>
-            <div class="incident">
-                <p>Bla Blou</p>
-                <p>Avenue ... </p>
-                <p>Username567</p>
-                <p>12/08/2024</p>
-            </div>
+            <% }); %>
         </div>
         
     </section>

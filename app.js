@@ -21,7 +21,13 @@ app.get('/', (req, res) => {
     res.render('base', {
         title: 'Home',
         content: 'index',
-        username: req.session.username || null
+        username: req.session.username || null,
+        incidents: [
+            {description: "Bla", address: "Rue du poulet 15", user: "Moi", date: `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`},
+            {description: "Bla", address: "Rue du poulet 15", user: "Moi", date: `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`},
+            {description: "Bla", address: "Rue du poulet 15", user: "Moi", date: `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`},
+            {description: "Bla", address: "Rue du poulet 15", user: "Moi", date: `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`}
+        ]
     })
 })
 
@@ -55,6 +61,13 @@ app.post('/login', (req, res) => {
 app.post('/register', (req, res) => {
     const { username, password, fullname, email } = req.body
     if (username && password && fullname && email) {
+        let user = {
+            username: username,
+            password: password,
+            fullname: fullname,
+            email: email
+        }
+
         req.session.username = username
         res.redirect('/')
     }
@@ -86,11 +99,12 @@ app.get('/report', (req, res) => {
 app.post('/report', (req, res) => {
     const { description, address } = req.body
     if (description && address) {
+        let date = new Date()
         let incident = {
             description: description,
             address: address,
             user: req.session.username,
-            date: new Date()
+            date: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
         }
         
         res.redirect('/')
