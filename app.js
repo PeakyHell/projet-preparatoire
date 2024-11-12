@@ -4,7 +4,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const https = require('https')
 const fs = require('fs')
-const { MongoClient } = require('mongodb')
+const MongoClient = require('mongodb').MongoClient
 
 
 app.set('view engine', 'ejs')
@@ -27,12 +27,13 @@ const usersCollection = client.db('Projet').collection('Users')
 
 
 // Page d'accueil
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
+    let incidentsList = await incidentsCollection.find().toArray()
     res.render('base', {
         title: 'Home',
         content: 'index',
         username: req.session.username || null,
-        incidents: []
+        incidents: incidentsList
     })
 })
 
