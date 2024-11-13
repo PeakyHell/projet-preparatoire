@@ -4,7 +4,8 @@ const bodyParser = require('body-parser')
 const https = require('https')
 const fs = require('fs')
 const sha256 = require('js-sha256')
-const MongoClient = require('mongodb').MongoClient
+
+const db = require('./db')
 const app = express()
 
 
@@ -18,11 +19,8 @@ app.use(session({
 
 
 // --- Connexion à la base de données ---
-// TODO Modifier l'adresse de la base de données
-const uri = 'mongodb+srv://louis:V89qT4AG0oHSaF0J@projet-prepa.4iswn.mongodb.net/?retryWrites=true&w=majority&appName=Projet-Prepa'
-const client = new MongoClient(uri)
-const incidentsCollection = client.db('Projet').collection('Incidents')
-const usersCollection = client.db('Projet').collection('Users')
+const incidentsCollection = db.collection('Incidents')
+const usersCollection = db.collection('Users')
 
 
 // --- Routes ---
