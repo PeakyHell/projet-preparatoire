@@ -1,11 +1,11 @@
 const express = require('express')
 const session = require('express-session')
-const app = express()
 const bodyParser = require('body-parser')
 const https = require('https')
 const fs = require('fs')
-const MongoClient = require('mongodb').MongoClient
 const sha256 = require('js-sha256')
+const MongoClient = require('mongodb').MongoClient
+const app = express()
 
 
 app.set('view engine', 'ejs')
@@ -37,6 +37,15 @@ app.get('/', async (req, res) => {
         incidents: incidentsList
     })
 })
+
+
+app.post('/search', async (req, res) => {
+
+    let documents = await incidentsCollection.find().toArray()
+
+})
+
+
 
 // Page de connexion / inscription
 app.get('/auth', (req, res) => {
