@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const https = require('https')
 const fs = require('fs')
 const MongoClient = require('mongodb').MongoClient
+const sha256 = require('js-sha256')
 
 
 app.set('view engine', 'ejs')
@@ -55,7 +56,7 @@ app.get('/auth', (req, res) => {
 app.post('/login', async (req, res) => {
     const { username, password } = req.body
     if (username && password) {
-        let user = await usersCollection.findOne({ username: username, password: password}) || null
+        let user = await usersCollection.findOne({ username: username, password: sha256(password)}) || null
         if (user) {
             req.session.username = username
             res.redirect('/')
@@ -73,7 +74,7 @@ app.post('/register', async (req, res) => {
         let user = {
             username: username,
             // TODO Hasher le mot de passe
-            password: password,
+            password: sha256(password),
             fullname: fullname,
             email: email
         }
