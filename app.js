@@ -43,7 +43,7 @@ app.get('/', async (req, res) => {
 
 
 // Fonction de recherche
-app.post('/search', async (req, res) => {
+app.post('/', async (req, res) => {
 
     let documents = await incidentsCollection.find().toArray()
 
