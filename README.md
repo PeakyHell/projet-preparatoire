@@ -23,3 +23,18 @@ Chaque page du site possède un fichier html :
 - index.html pour la page principale
 - auth.html pour la page de connexion
 - report.html pour la page de report d'incidents
+
+# Installation
+1. Une fois le dossier du projet téléchargé, accédez au dossier depuis un terminal de commandes et installer les modules nécessaires avec la commande suivante :
+
+```
+npm install
+```
+
+2. Accédez ensuite au fichier *config.js* et entrer le lien vers votre base de données et une clé de session dans les variables correspondantes.
+
+3. Lancez l'application avec la commande suivante :
+
+```
+node app.js
+```
