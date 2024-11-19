@@ -1,13 +1,15 @@
 const sha256 = require('js-sha256')
 
-const app = require('./app')
+const express = require('express')
+const router = express.Router()
+
 const incidentsCollection = require('./db').incidentsCollection
 const usersCollection = require('./db').usersCollection
 
 
 // Page d'accueil
-app.get('/', async (req, res) => {
-    let incidentsList = await incidentsCollection.find().sort({date: 1}).toArray()
+router.get('/', async (req, res) => {
+    let incidentsList = await incidentsCollection.find().sort({date: -1}).toArray()
     res.render('base', {
         title: 'Home',
         content: 'index',
@@ -18,7 +20,7 @@ app.get('/', async (req, res) => {
 
 
 // Fonction de recherche
-app.post('/', async (req, res) => {
+router.post('/', async (req, res) => {
 
     let documents = await incidentsCollection.find().toArray()
 
@@ -26,7 +28,7 @@ app.post('/', async (req, res) => {
 
 
 // Page de connexion / inscription
-app.get('/auth', (req, res) => {
+router.get('/auth', (req, res) => {
     if (req.session.username) {
         res.redirect('/')
     }
@@ -42,7 +44,7 @@ app.get('/auth', (req, res) => {
 
 
 // Formulaire de connexion
-app.post('/login', async (req, res) => {
+router.post('/login', async (req, res) => {
     const { username, password } = req.body
     if (username && password) {
         let user = await usersCollection.findOne({ username: username, password: sha256(password)}) || null
@@ -64,7 +66,7 @@ app.post('/login', async (req, res) => {
 
 
 // Formulaire d'inscritpion
-app.post('/register', async (req, res) => {
+router.post('/register', async (req, res) => {
     const { username, password, fullname, email } = req.body
     if (username && password && fullname && email) {
         let user = await usersCollection.findOne({ username: username }) || null
@@ -94,14 +96,14 @@ app.post('/register', async (req, res) => {
 
 
 // Lien de déconnexion
-app.get('/logout', (req, res) => {
+router.get('/logout', (req, res) => {
     req.session.destroy()
     res.redirect('/')
 })
 
 
 // Page de création d'incidents
-app.get('/report', (req, res) => {
+router.get('/report', (req, res) => {
     if (req.session.username) {
         res.render('base', {
             title: 'Report',
@@ -116,7 +118,7 @@ app.get('/report', (req, res) => {
 
 
 // Formulaire de création d'incidents
-app.post('/report', async (req, res) => {
+router.post('/report', async (req, res) => {
     const { description, address } = req.body
     if (description && address) {
         let date = new Date()
@@ -134,4 +136,4 @@ app.post('/report', async (req, res) => {
     }
 })
 
-module.exports = app
+module.exports = router
