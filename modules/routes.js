@@ -69,15 +69,19 @@ router.post('/login', async (req, res) => {
 router.post('/register', async (req, res) => {
     const { username, password, fullname, email } = req.body
     if (username && password && fullname && email) {
-        let user = await usersCollection.findOne({ username: username }) || null
-        if (user) {
+        // Si pseudo déjà utilisé
+        if (await usersCollection.findOne({ username: username }) || null) {
             req.session.error = 'Ce pseudo est déjà pris'
+            res.redirect('auth')
+        }
+        // Si email déjà utilisé
+        else if (await usersCollection.findOne({email: email}) || null){
+            req.session.error = 'Cet email est déjà utilisé'
             res.redirect('auth')
         }
         else {
         user = {
             username: username,
-            // TODO Hasher le mot de passe
             password: sha256(password),
             fullname: fullname,
             email: email
@@ -88,6 +92,7 @@ router.post('/register', async (req, res) => {
         res.redirect('/')
         }
     }
+    // Si tous les champs ne sont pas remplis
     else {
         req.session.error = 'Veuillez remplir tous les champs'
         res.redirect('auth')
