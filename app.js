@@ -14,7 +14,7 @@ app.set('views', 'public/templates')
 app.use(express.static('public/static'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(session({
-    secret: 'propre123'
+    secret: require('./config').session_secret,
 }));
 
 
