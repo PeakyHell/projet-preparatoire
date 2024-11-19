@@ -93,7 +93,6 @@ main.index {
 .incidents-list {
     grid-area: 2 / 1 / 16 / 5;
     display: grid;
-    grid-row: 0.5px;
     grid-template-rows: repeat(14, auto);
     gap: .5rem;
 }
@@ -107,7 +106,7 @@ main.index {
     grid-template-columns: repeat(4, auto);
     text-align: left;
     overflow-wrap: break-word;
-    word-break: break-word;
+    word-break: break-all;
     white-space: normal;
     align-items: start;
     margin-top: 0px;
@@ -122,7 +121,7 @@ main.index {
     text-align: left;
     padding-left: 2rem;
     overflow-wrap: break-word;
-    word-break: break-word;
+    word-break: break-all;
     white-space: normal;
     height: auto;
 }
