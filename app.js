@@ -15,6 +15,12 @@ app.use(express.static('public/static'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(session({
     secret: require('./config').session_secret,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        path: '/',
+        httpOnly: true,
+    }
 }));
 
 
@@ -127,7 +133,7 @@ app.post('/report', async (req, res) => {
             description: description,
             address: address,
             user: req.session.username,
-            date: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
+            date: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
         }
         await incidentsCollection.insertOne(incident)
         res.redirect('/')

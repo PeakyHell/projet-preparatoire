@@ -37,7 +37,9 @@ npm install
 
 2. Accédez ensuite au fichier *config.js* et entrer le lien vers votre base de données, le nom de votre base de données et une clé de session dans les variables correspondantes.
 
-3. Lancez l'application avec la commande suivante :
+3. Créez une clé privée dans un fichier nommé *key.pem* en utilisant une passphrase que vous ajouterez également au fichier *config.js* et un certificat dans un fichier nommé *cert.pem*
+
+4. Lancez l'application avec la commande suivante :
 
 ```
 node app.js
