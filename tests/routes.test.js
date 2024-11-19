@@ -9,6 +9,11 @@ beforeAll(async () => {
     await usersCollection.deleteMany({})
 })
 
+afterAll(async () => {
+    await incidentsCollection.deleteMany({})
+    await usersCollection.deleteMany({})
+})
+
 
 // --- Page d'accueil ---
 describe("GET /", () => {
