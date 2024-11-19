@@ -59,7 +59,8 @@ app.get('/auth', (req, res) => {
         res.render('base', {
             title: 'Auth',
             content: 'auth',
-            username: req.session.username || null
+            username: req.session.username || null,
+            error: req.session.error || null
         })
     }
 })
@@ -72,11 +73,17 @@ app.post('/login', async (req, res) => {
         let user = await usersCollection.findOne({ username: username, password: sha256(password)}) || null
         if (user) {
             req.session.username = username
+            req.session.error = null
             res.redirect('/')
         }
         else {
+            req.session.error = 'Le pseudo et/ou le mot de passe est incorrect'
             res.redirect('/auth')
         }
+    }
+    else {
+        req.session.error = 'Veuillez remplir tous les champs'
+        res.redirect('/auth')
     }
 })
 
@@ -85,7 +92,13 @@ app.post('/login', async (req, res) => {
 app.post('/register', async (req, res) => {
     const { username, password, fullname, email } = req.body
     if (username && password && fullname && email) {
-        let user = {
+        let user = await usersCollection.findOne({ username: username }) || null
+        if (user) {
+            req.session.error = 'Ce pseudo est déjà pris'
+            res.redirect('auth')
+        }
+        else {
+        user = {
             username: username,
             // TODO Hasher le mot de passe
             password: sha256(password),
@@ -93,10 +106,13 @@ app.post('/register', async (req, res) => {
             email: email
         }
         await usersCollection.insertOne(user)
+        req.session.error = null
         req.session.username = username
         res.redirect('/')
+        }
     }
     else {
+        req.session.error = 'Veuillez remplir tous les champs'
         res.redirect('auth')
     }
 })
