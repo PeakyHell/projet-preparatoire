@@ -8,7 +8,7 @@
 
 a {
     text-decoration: none;
-    color: black;
+    color: white;
 }
 
 /* --------------- NAVBAR --------------- */
@@ -19,6 +19,8 @@ nav {
     align-items: center;
     padding: 1rem;
     border-bottom: 1px solid black;
+    background-color: #157abe;
+    color: white;
 }
 
 nav h1 {
@@ -57,7 +59,8 @@ main.index {
 /* Lien pour créer un incident */
 .index-top a {
     border: 1px solid black;
-    border-radius: .5rem;
+    color: black;
+    border-radius: .6rem;
     padding: .5rem;
     margin-left: auto;
 }
@@ -87,6 +90,7 @@ main.index {
 .list-header {
     grid-area: 1 / 1 / 2 / 5;
     font-weight: bold;
+    color: #f17924;
 }
 
 /* Liste de 14 lignes, chacune contenant un incident */
@@ -163,7 +167,7 @@ form textarea {
 form button {
     align-self: flex-start;
     padding: 10px 20px;
-    background-color: #000000;
+    background-color: #157abe;
     color: #ffffff;
     border: none;
     border-radius: 50px;
@@ -173,7 +177,7 @@ form button {
 }
 
 form button:hover {
-    background-color: #333333;
+    background-color: #1a6292;
 }
 
 /* ------------AUTH PAGE-------------------*/
@@ -182,6 +186,7 @@ form button:hover {
 .container {
     width: 300px;
     padding: 10px;
+    margin-left: 10px;
 }
   
 .container h2 {
@@ -210,12 +215,12 @@ form button:hover {
 /* bouton s'enregistrer et s'identifier */
 .container button {
     padding: 5px;
-    background-color: rgb(0, 0, 0);
+    background-color: #157abe;
     border: 1px solid black;
     cursor: pointer;
     width: 100%;
 }
 
 .container button:hover {
-    background-color: #000000;
+    background-color: #1a6292;
 }
