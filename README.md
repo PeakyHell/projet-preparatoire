@@ -31,7 +31,11 @@ Chaque page du site possède un fichier html :
 npm install
 ```
 
-2. Accédez ensuite au fichier *config.js* et entrer le lien vers votre base de données et une clé de session dans les variables correspondantes.
+2. Créez une base de donnée ayant le nom que vous souhaitez et contenant 2 collections :
+    - Une collection *Users*
+    - Une collection *Incidents*
+
+2. Accédez ensuite au fichier *config.js* et entrer le lien vers votre base de données, le nom de votre base de données et une clé de session dans les variables correspondantes.
 
 3. Lancez l'application avec la commande suivante :
 
