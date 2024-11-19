@@ -143,5 +143,8 @@ app.post('/report', async (req, res) => {
     }
 })
 
-
-app.listen(3000)
+https.createServer({
+    key: fs.readFileSync('./key.pem', 'utf8'),
+    cert: fs.readFileSync('./cert.pem', 'utf8'),
+    passphrase: require('./config').server_passphrase
+}, app).listen(3000)
