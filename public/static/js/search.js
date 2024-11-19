@@ -1,6 +1,14 @@
 function wordsCount (doc) {
-    const words = doc.split(" ")
-    return words.length
+    if (doc.length === 0) {
+        return 0
+    }
+    else if (doc.length === 1) {
+        return 1
+    }
+    else {
+        const words = doc.split(" ")
+        return words.length
+    }
 }
 
 function wordOccurences (doc, word) {
@@ -15,14 +23,16 @@ function wordOccurences (doc, word) {
 }
 
 function tf(word, document) {
-    let wordsCount = wordsCount(document)
-    let wordOccurences = wordOccurences(document, word)
-    return Math.log(1+(wordOccurences/wordsCount))
+    let countOfWords = wordsCount(document)
+    let occurencesOfWord = wordOccurences(document, word)
+    if (countOfWords === 0) {
+        return 0
+    }
+    return Math.log(1+(occurencesOfWord/countOfWords))
 }
 
-function idf(word) {
+function idf(word, documents) {
     // documents sera lié à la base de données
-    const documents = {}
     let docAmount = documents.length
     let docsWithWord = 0
 
@@ -31,10 +41,14 @@ function idf(word) {
             docsWithWord += 1
         }
     })
-
+    if (docsWithWord === 0) {
+        return 0
+    }
     return Math.log(docAmount/docsWithWord)
 }
 
-function tf_idf(word, document) {
-    return tf(word, document) * idf(word)
+function tf_idf(word, document, documents) {
+    return tf(word, document) * idf(word, documents)
 }
+
+module.exports = { tf_idf }
