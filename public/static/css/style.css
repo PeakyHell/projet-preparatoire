@@ -92,7 +92,8 @@ main.index {
 .incidents-list {
     grid-area: 2 / 1 / 16 / 5;
     display: grid;
-    grid-template-rows: repeat(14, 1fr);
+    grid-row: 0.5px;
+    grid-template-rows: repeat(14, auto);
     gap: .5rem;
 }
 
@@ -102,7 +103,7 @@ main.index {
     border-radius: 0.5rem;
     padding: 0.5rem 1rem;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, auto);
     text-align: left;
     overflow-wrap: break-word;
     word-break: break-word;
@@ -110,6 +111,7 @@ main.index {
     align-items: start;
     margin-top: 0px;
     padding-top: 5px;
+    height: auto;
 }
 
 /*  */
@@ -121,6 +123,7 @@ main.index {
     overflow-wrap: break-word;
     word-break: break-word;
     white-space: normal;
+    height: auto;
 }
 
 
