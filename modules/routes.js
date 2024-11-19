@@ -1,35 +1,10 @@
-const express = require('express')
-const session = require('express-session')
-const bodyParser = require('body-parser')
-const https = require('https')
-const fs = require('fs')
 const sha256 = require('js-sha256')
 
-const db = require('./db')
-const app = express()
+const app = require('./app')
+const incidentsCollection = require('./db').incidentsCollection
+const usersCollection = require('./db').usersCollection
 
 
-app.set('view engine', 'ejs')
-app.set('views', 'public/templates')
-app.use(express.static('public/static'))
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(session({
-    secret: require('./config').session_secret,
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-        path: '/',
-        httpOnly: true,
-    }
-}));
-
-
-// --- Connexion à la base de données ---
-const incidentsCollection = db.collection('Incidents')
-const usersCollection = db.collection('Users')
-
-
-// --- Routes ---
 // Page d'accueil
 app.get('/', async (req, res) => {
     let incidentsList = await incidentsCollection.find().sort({date: 1}).toArray()
@@ -159,8 +134,4 @@ app.post('/report', async (req, res) => {
     }
 })
 
-https.createServer({
-    key: fs.readFileSync('./key.pem', 'utf8'),
-    cert: fs.readFileSync('./cert.pem', 'utf8'),
-    passphrase: require('./config').server_passphrase
-}, app).listen(3000)
+module.exports = app

@@ -2,7 +2,7 @@
   "name": "projet_pp_a03",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "jest"
   },

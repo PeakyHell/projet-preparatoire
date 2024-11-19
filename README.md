@@ -42,5 +42,5 @@ npm install
 4. Lancez l'application avec la commande suivante :
 
 ```
-node app.js
+node index.js
 ```
