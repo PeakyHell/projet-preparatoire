@@ -37,7 +37,7 @@ router.get('/auth', (req, res) => {
             title: 'Auth',
             content: 'auth',
             username: req.session.username || null,
-            error: req.session.error || null
+            error: req.session.auth_error || null
         })
     }
 })
@@ -48,18 +48,21 @@ router.post('/login', async (req, res) => {
     const { username, password } = req.body
     if (username && password) {
         let user = await usersCollection.findOne({ username: username, password: sha256(password)}) || null
+        // Si un utilisateur correspond
         if (user) {
             req.session.username = username
-            req.session.error = null
+            req.session.auth_error = null
             res.redirect('/')
         }
+        // Sinon renvoie une erreur
         else {
-            req.session.error = 'Le pseudo et/ou le mot de passe est incorrect'
+            req.session.auth_error = 'Le pseudo et/ou le mot de passe est incorrect'
             res.redirect('/auth')
         }
     }
+    // Si tous les champs ne sont pas remplis
     else {
-        req.session.error = 'Veuillez remplir tous les champs'
+        req.session.auth_error = 'Veuillez remplir tous les champs'
         res.redirect('/auth')
     }
 })
@@ -70,32 +73,32 @@ router.post('/register', async (req, res) => {
     const { username, password, fullname, email } = req.body
     if (username && password && fullname && email) {
         // Si pseudo déjà utilisé
-        if (await usersCollection.findOne({ username: username }) || null) {
-            req.session.error = 'Ce pseudo est déjà pris'
-            res.redirect('auth')
+        if (await usersCollection.findOne({ username: username })) {
+            req.session.auth_error = 'Ce pseudo est déjà pris'
+            res.redirect('/auth')
         }
         // Si email déjà utilisé
-        else if (await usersCollection.findOne({email: email}) || null){
-            req.session.error = 'Cet email est déjà utilisé'
-            res.redirect('auth')
+        else if (await usersCollection.findOne({email: email})){
+            req.session.auth_error = 'Cet email est déjà utilisé'
+            res.redirect('/auth')
         }
         else {
-        user = {
+        const user = {
             username: username,
             password: sha256(password),
             fullname: fullname,
             email: email
         }
         await usersCollection.insertOne(user)
-        req.session.error = null
+        req.session.auth_error = null
         req.session.username = username
         res.redirect('/')
         }
     }
     // Si tous les champs ne sont pas remplis
     else {
-        req.session.error = 'Veuillez remplir tous les champs'
-        res.redirect('auth')
+        req.session.auth_error = 'Veuillez remplir tous les champs'
+        res.redirect('/auth')
     }
 })
 
@@ -113,7 +116,8 @@ router.get('/report', (req, res) => {
         res.render('base', {
             title: 'Report',
             content: 'report',
-            username: req.session.username || null
+            username: req.session.username || null,
+            error: req.session.report_error || null
         })
     }
     else {
@@ -126,17 +130,25 @@ router.get('/report', (req, res) => {
 router.post('/report', async (req, res) => {
     const { description, address } = req.body
     if (description && address) {
-        let date = new Date()
-        let incident = {
-            description: description,
-            address: address,
-            user: req.session.username,
-            date: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`
+        // Vérifie la taille de la description
+        if (description.length > 256) {
+            req.session.report_error = 'La description ne peut pas dépasser 255 caractères'
+            res.redirect('/report')
         }
-        await incidentsCollection.insertOne(incident)
-        res.redirect('/')
+        else {
+            let date = new Date()
+            let incident = {
+                description: description,
+                address: address,
+                user: req.session.username,
+                date: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`
+            }
+            await incidentsCollection.insertOne(incident)
+            res.redirect('/')
+        }
     }
     else {
+        req.session.report_error = 'Veuillez remplir tous les champs'
         res.redirect('/report')
     }
 })
