@@ -126,7 +126,7 @@ router.post('/report', async (req, res) => {
             description: description,
             address: address,
             user: req.session.username,
-            date: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+            date: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`
         }
         await incidentsCollection.insertOne(incident)
         res.redirect('/')
