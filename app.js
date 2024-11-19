@@ -32,7 +32,7 @@ const usersCollection = db.collection('Users')
 // --- Routes ---
 // Page d'accueil
 app.get('/', async (req, res) => {
-    let incidentsList = await incidentsCollection.find().toArray()
+    let incidentsList = await incidentsCollection.find().sort({date: 1}).toArray()
     res.render('base', {
         title: 'Home',
         content: 'index',
