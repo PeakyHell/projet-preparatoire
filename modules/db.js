@@ -1,16 +1,21 @@
-const MongoClient = require('mongodb').MongoClient
+const { MongoClient } = require('mongodb');
 
-const uri = require('../config').db_uri
-const db_name = require('../config').db_name
+const uri = 'mongodb://127.0.0.1:27017';
+const client = new MongoClient(uri);
 
-const client = new MongoClient(uri)
-const db = client.db(db_name)
+let incidentsCollection;
+let usersCollection;
 
+(async () => {
+    try {
+        await client.connect();
+        const db = client.db('my_project');
+        incidentsCollection = db.collection('incidents');
+        usersCollection = db.collection('users');
+        console.log("Connecté à MongoDB");
+    } catch (error) {
+        console.error("Erreur de connexion à MongoDB:", error);
+    }
+})();
 
-const incidentsCollection = db.collection('Incidents')
-const usersCollection = db.collection('Users')
-
-module.exports = {
-    incidentsCollection,
-    usersCollection
-}
+module.exports = { incidentsCollection, usersCollection };

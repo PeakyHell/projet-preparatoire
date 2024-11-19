@@ -1,31 +1,75 @@
-const sha256 = require('js-sha256')
+if (!incidentsCollection || !usersCollection) {
+    console.error("Collections MongoDB non initialisées. Vérifie la connexion.");
+    process.exit(1);
+}
 
-const express = require('express')
-const router = express.Router()
+console.log
+// routes.js
+const express = require('express');
+const sha256 = require('js-sha256');
+const { incidentsCollection, usersCollection } = require('./db');
+const { tf_idf } = require('./search');
 
-const incidentsCollection = require('./db').incidentsCollection
-const usersCollection = require('./db').usersCollection
-
-
+const router = express.Router();
+console.log
 // Page d'accueil
 router.get('/', async (req, res) => {
-    let incidentsList = await incidentsCollection.find().sort({date: -1}).toArray()
-    res.render('base', {
-        title: 'Home',
-        content: 'index',
-        username: req.session.username || null,
-        incidents: incidentsList
-    })
-})
-
+  let incidentsList = await incidentsCollection.find().sort({ date: -1 }).toArray();
+  res.render('index', {
+    title: 'Home',
+    username: req.session.username || null,
+    incidents: incidentsList
+  });
+});
 
 // Fonction de recherche
 router.post('/', async (req, res) => {
+  const searchQuery = req.body.searchQuery.toLowerCase();  // Requête de recherche
+  const documents = await incidentsCollection.find().toArray();  // Récupérer tous les incidents
+  console.log
+  try {
+    // Filtrer les documents avec un score TF-IDF non nul
+    const results = documents.filter(doc => {
+      const description = doc.description.toLowerCase();
+      const score = tf_idf(searchQuery, description, documents);  // Calculer le score
+      return score > 0;  // Conserver les documents pertinents
+    });
+    console.log
+    // Si aucun résultat n'est trouvé
+    if (results.length === 0) {
+      return res.render('index', {
+        title: 'Recherche',
+        username: req.session.username || null,
+        incidents: [],
+        message: 'Aucun incident trouvé pour votre recherche.'
+      });
+    }console.log
+    console.log
+    // Trier les résultats par score décroissant
+    const sortedResults = results.sort((a, b) => {
+      const scoreA = tf_idf(searchQuery, a.description.toLowerCase(), documents);
+      const scoreB = tf_idf(searchQuery, b.description.toLowerCase(), documents);
+      return scoreB - scoreA;  // Trier par score décroissant
+    });
+    console.log
+    // Afficher les résultats
+    res.render('index', {
+      title: 'Recherche',
+      username: req.session.username || null,
+      incidents: sortedResults,
+      message: ''
+    });
 
-    let documents = await incidentsCollection.find().toArray()
-
-})
-
+  } catch (error) {
+    console.error('Erreur lors de la recherche:', error);
+    res.render('index', {
+      title: 'Recherche',
+      username: req.session.username || null,
+      incidents: [],
+      message: 'Une erreur est survenue lors de la recherche.'
+    });
+  }
+});
 
 // Page de connexion / inscription
 router.get('/auth', (req, res) => {
@@ -136,4 +180,4 @@ router.post('/report', async (req, res) => {
     }
 })
 
-module.exports = router
+module.exports = router;

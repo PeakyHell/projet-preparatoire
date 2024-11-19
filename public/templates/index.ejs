@@ -1,9 +1,10 @@
+<!-- views/index.ejs -->
 <main class="index">
     <section class="index-top">
         <a href="/report">Ajouter un incident</a>
         <form action="/" method="post" class="incident-search">
             <p>Rechercher un incident :</p>
-            <input type="text">
+            <input type="text" name="searchQuery" placeholder="Rechercher..." required>
             <button type="submit">Rechercher</button>
         </form>
     </section>
@@ -15,15 +16,18 @@
             <p>Date</p>
         </div>
         <div class="incidents-list">
-            <% incidents.forEach((incident) => { %>
-            <div class="incident">
-                <p><%= incident.description %></p>
-                <p><%= incident.address %></p>
-                <p><%= incident.user %></p>
-                <p><%= incident.date %></p>
-            </div>
-            <% }); %>
+            <% if (incidents.length === 0) { %>
+                <p>Aucun incident trouvé pour votre recherche.</p>
+            <% } else { %>
+                <% incidents.forEach((incident) => { %>
+                    <div class="incident">
+                        <p><%= incident.description %></p>
+                        <p><%= incident.address %></p>
+                        <p><%= incident.user %></p>
+                        <p><%= incident.date %></p>
+                    </div>
+                <% }); %>
+            <% } %>
         </div>
-        
     </section>
 </main>
