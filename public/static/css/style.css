@@ -78,7 +78,8 @@ main.index {
 /* Crée une grille sur laquelle le header et les incidents s'aligneront */
 .incidents-page {
     display: grid;
-    grid-template: repeat(15, 1fr) / repeat(4, 1fr);
+    grid-template-rows: 40px;
+    grid-template-columns: repeat(4, 1fr);
     width: 75%;
 }
 
